@@ -7,13 +7,37 @@ export default function Home() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Replace with your actual waitlist backend or API
-    console.log("Waitlist email submitted:", email);
-    setSubmitted(true);
-    setEmail("");
+  
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const utmSource = params.get("utm_source");
+  
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          utm_source: utmSource,
+          expo_opt_in: true, // Optional — could be tied to a checkbox
+        }),
+      });
+  
+      if (res.ok) {
+        setSubmitted(true);
+        setEmail("");
+      } else {
+        const data = await res.json();
+        console.error("Submission failed:", data.error);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
   };
+  
 
   return (
     <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center px-4 py-12">
