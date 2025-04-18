@@ -12,7 +12,7 @@ function Hero() {
       "when to follow up",
       "what you talked about",
       "how you met",
-      "who’s in your circle"
+      "who is in your circle"
     ],
     []
   );
@@ -63,9 +63,9 @@ function Hero() {
 
             <p className="text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground max-w-2xl text-center">
             Rookery helps you stay meaningfully connected. It keeps the people
-              you`ve met — and the moments that matter — from fading into the
+              you have met — and the moments that matter — from fading into the
               past. Whether it`s recalling your last conversation or knowing
-              the when it's time to follow up, Rookery strengthens your network
+              the when it is time to follow up, Rookery strengthens your network
               by helping you remember what makes each connection count.
             </p>
           </div>
