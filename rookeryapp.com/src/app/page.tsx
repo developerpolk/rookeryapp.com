@@ -13,12 +13,13 @@ export default function Home() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+  
     try {
       const params = new URLSearchParams(window.location.search);
       const utmSource = params.get("utm_source");
-
-      const res = await fetch("/api/waitlist", {
+  
+      // First: Submit to your internal waitlist API
+      const res = await fetch("/api/waitlist/supabase", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -29,8 +30,23 @@ export default function Home() {
           expo_opt_in: true,
         }),
       });
-
+  
       if (res.ok) {
+        // Next: Trigger Resend welcome email
+        const emailRes = await fetch("/api/waitlist/email", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        });
+  
+        if (!emailRes.ok) {
+          const emailError = await emailRes.json();
+          console.error("Email send failed:", emailError.error);
+        }
+  
+        // Final step: update UI
         setSubmitted(true);
         setEmail("");
       } else {
@@ -41,6 +57,7 @@ export default function Home() {
       console.error("Error submitting form:", error);
     }
   };
+  
 
   return (
     <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center px-4 py-12">
@@ -81,7 +98,7 @@ export default function Home() {
   <h2 className="text-2xl font-semibold mb-4 text-white">Why Join Early?</h2>
   <p className="text-gray-400 mb-6 text-sm sm:text-base">
     Be among the first to experience how Rookery makes remembering your network effortless.
-    Early sign-ups unlock exclusive access to our private beta and future premium features.
+    Early sign-ups unlock exclusive access to our private beta and future premium features. Secure your place as spots are limited!
   </p>
 
   <ul className="text-sm sm:text-base text-gray-300 space-y-3">
@@ -89,7 +106,7 @@ export default function Home() {
       ✅ <span>Private beta access before public launch</span>
     </li>
     <li className="flex items-center justify-center gap-2">
-      🎁 <span>Free Pro features for the first 3 months</span>
+      🎁 <span>Free Rookery Pro features for a month</span>
     </li>
     <li className="flex items-center justify-center gap-2">
       📬 <span>Get product updates, sneak peeks & community invites</span>
@@ -167,7 +184,7 @@ export default function Home() {
 
             {/* Privacy Text */}
             <p className="text-xs text-muted-foreground text-center max-w-[90%]">
-              Your privacy is paramount. Rookery processes all data locally on your device using native Swift capabilities. Nothing leaves your phone.
+              Your privacy is paramount. Rookery processes all data locally on your device using native Swift capabilities. Nothing leaves your phone without your permission.
             </p>
           </div>
 
