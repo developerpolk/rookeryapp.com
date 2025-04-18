@@ -3,7 +3,7 @@ import supabase from "@/lib/supabase/server";
 
 export async function POST(req: Request) {
   try {
-    const { email, utm_source, expo_opt_in } = await req.json();
+    const { email, utm_source, expo_opt_in, device_type } = await req.json();
 
     if (!email || typeof email !== "string") {
       return NextResponse.json({ error: "Invalid email" }, { status: 400 });
@@ -14,6 +14,7 @@ export async function POST(req: Request) {
         email,
         utm_source,
         expo_opt_in: expo_opt_in || false,
+        device_type
       },
     ]);
 

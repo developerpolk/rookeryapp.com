@@ -19,7 +19,8 @@ export default function Home() {
     try {
       const params = new URLSearchParams(window.location.search);
       const utmSource = params.get("utm_source");
-  
+      const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+      const deviceType = isMobile ? "mobile" : "desktop";
       // First: Submit to your internal waitlist API
       const res = await fetch("/api/waitlist/supabase", {
         method: "POST",
@@ -29,7 +30,8 @@ export default function Home() {
         body: JSON.stringify({
           email,
           utm_source: utmSource,
-          expo_opt_in: true,
+          expo_opt_in: false,
+          device_type: deviceType
         }),
       });
   
