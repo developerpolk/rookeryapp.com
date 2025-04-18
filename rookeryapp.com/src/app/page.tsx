@@ -3,8 +3,6 @@
 import Image from "next/image";
 import { useState } from "react";
 import { Hero } from "@/components/ui/animated-hero";
-import { MoveRight, PhoneCall } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 

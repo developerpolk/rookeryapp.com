@@ -63,8 +63,8 @@ function Hero() {
 
             <p className="text-lg md:text-xl leading-relaxed tracking-tight text-muted-foreground max-w-2xl text-center">
             Rookery helps you stay meaningfully connected. It keeps the people
-              you’ve met — and the moments that matter — from fading into the
-              past. Whether it’s recalling your last conversation or knowing
+              you`ve met — and the moments that matter — from fading into the
+              past. Whether it`s recalling your last conversation or knowing
               the when it's time to follow up, Rookery strengthens your network
               by helping you remember what makes each connection count.
             </p>
