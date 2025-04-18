@@ -17,7 +17,15 @@ export async function POST(req: Request) {
       },
     ]);
 
+    // ✅ Handle duplicate email error from Supabase
     if (error) {
+      if (error.code === "23505") {
+        return NextResponse.json(
+          { error: "Thanks, but you're already on the waitlist!" },
+          { status: 409 }
+        );
+      }
+
       console.error("Insert error:", error);
       return NextResponse.json({ error: error.message }, { status: 500 });
     }

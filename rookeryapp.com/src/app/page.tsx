@@ -5,11 +5,13 @@ import { useState } from "react";
 import { Hero } from "@/components/ui/animated-hero";
 import { ArrowRight } from "lucide-react";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
+import toast from "react-hot-toast"
 
 
 export default function Home() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -31,30 +33,42 @@ export default function Home() {
         }),
       });
   
-      if (res.ok) {
-        // Next: Trigger Resend welcome email
-        const emailRes = await fetch("/api/waitlist/email", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email }),
-        });
-  
-        if (!emailRes.ok) {
-          const emailError = await emailRes.json();
-          console.error("Email send failed:", emailError.error);
-        }
-  
-        // Final step: update UI
-        setSubmitted(true);
-        setEmail("");
-      } else {
+      // Handle duplicates
+      if (res.status === 409) {
         const data = await res.json();
-        console.error("Submission failed:", data.error);
+        toast.error(data.error || "Thanks, but you're already on the waitlist!");
+        return;
       }
+
+      if (!res.ok) {
+        const data = await res.json();
+        toast.error("Something went wrong: " + (data.error || res.statusText));
+        return;
+      }
+
+      toast.success("You're on the waitlist!");
+
+      // Send confirmation email via Resend
+      const emailRes = await fetch("/api/waitlist/email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (!emailRes.ok) {
+        const emailError = await emailRes.json();
+        console.error("Email send failed:", emailError.error);
+      }
+
+      setSubmitted(true);
+      setEmail("");
+      setError("");
+
     } catch (error) {
       console.error("Error submitting form:", error);
+      setError("Unexpected error. Please try again later.");
     }
   };
   
@@ -88,6 +102,11 @@ export default function Home() {
         ) : (
           <p className="text-green-400">Thanks! You’re on the list.</p>
         )}
+        {error && (
+          <p className="text-red-400 text-sm mt-2 text-center">
+            {error}
+          </p>
+        )}
          {/* <div>
             <Button variant="secondary" size="sm" className="gap-4">
               Read our launch article <MoveRight className="w-4 h-4" />
@@ -109,7 +128,7 @@ export default function Home() {
       🎁 <span>Free Rookery Pro features for a month</span>
     </li>
     <li className="flex items-center justify-center gap-2">
-      📬 <span>Get product updates, sneak peeks & community invites</span>
+      📬 <span>Get updates, sneak peeks & community invites</span>
     </li>
   </ul>
 </section>
