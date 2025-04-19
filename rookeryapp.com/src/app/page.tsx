@@ -120,7 +120,7 @@ export default function Home() {
   <p className="text-gray-400 mb-6 text-sm sm:text-base">
     Be among the first to experience how Rookery makes remembering your network effortless.
     Early sign-ups unlock exclusive access to our private beta and future premium features.
-    Secure your spot, we're limited to the first 100 sign-ups!
+    Secure your spot, we are limited to the first 100 sign-ups!
   </p>
 
   <ul className="text-sm sm:text-base text-gray-300 space-y-3">
