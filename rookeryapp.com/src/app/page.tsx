@@ -119,7 +119,8 @@ export default function Home() {
   <h2 className="text-2xl font-semibold mb-4 text-white">Why Join Early?</h2>
   <p className="text-gray-400 mb-6 text-sm sm:text-base">
     Be among the first to experience how Rookery makes remembering your network effortless.
-    Early sign-ups unlock exclusive access to our private beta and future premium features. Secure your place as spots are limited!
+    Early sign-ups unlock exclusive access to our private beta and future premium features.
+    Secure your spot, we're limited to the first 100 sign-ups!
   </p>
 
   <ul className="text-sm sm:text-base text-gray-300 space-y-3">

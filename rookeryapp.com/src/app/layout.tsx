@@ -16,8 +16,29 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Join the Rookery Waitlist",
-  description: "Developed by Polk Holdings",
+  title: "Rookery",
+  description: "Join the waitlist for Rookery — the app that helps you remember your network before you need it.",
+  openGraph: {
+    title: "Rookery",
+    description: "Join the waitlist for Rookery — one month of premium free for early signups.",
+    url: "https://rookeryapp.com",
+    siteName: "Rookery",
+    images: [
+      {
+        url: "https://rookeryapp.com/preview.png", // Optional image preview
+        width: 1200,
+        height: 630,
+        alt: "Rookery Waitlist",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Rookery",
+    description: "Join the waitlist for Rookery — the app that helps you remember your network.",
+    images: ["https://rookeryapp.com/preview.png"],
+  },
 };
 
 export default function RootLayout({
