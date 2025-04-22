@@ -10,7 +10,7 @@ function Hero() {
     () => [
       "why they matter",
       "when to reach out",
-      "what you discussed",
+      "what you said",
       "how you met",
       "about your circle"
     ],
