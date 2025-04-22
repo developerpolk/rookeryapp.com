@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { Hero } from "@/components/ui/animated-hero";
-import { ArrowRight } from "lucide-react";
+// import { ArrowRight } from "lucide-react";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
 import toast from "react-hot-toast"
 
