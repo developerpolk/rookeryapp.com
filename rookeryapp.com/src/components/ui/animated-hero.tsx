@@ -9,10 +9,10 @@ function Hero() {
   const titles = useMemo(
     () => [
       "why they matter",
-      "when to follow up",
-      "what you talked about",
+      "when to reach out",
+      "what you discussed",
       "how you met",
-      "who is in your circle"
+      "about your circle"
     ],
     []
   );

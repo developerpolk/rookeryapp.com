@@ -78,6 +78,14 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center px-4 py-12">
       {/* Hero Section */}
+      <div className="flex gap-2 mt-4 justify-center">
+  <span className="bg-cyan-900/30 text-cyan-300 text-xs font-medium px-3 py-1 rounded-full border border-cyan-400">
+    iOS in development
+  </span>
+  <span className="bg-gray-800/30 text-gray-300 text-xs font-medium px-3 py-1 rounded-full border border-gray-600">
+    Android coming later
+  </span>
+</div>
       <Hero />
       <section className="mb-2">
       {!submitted ? (
