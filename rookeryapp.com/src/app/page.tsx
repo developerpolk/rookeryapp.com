@@ -139,7 +139,7 @@ export default function Home() {
       🎁 <span>Free Rookery Pro features for a month</span>
     </li>
     <li className="flex items-center justify-center gap-2">
-      📬 <span>Get updates, sneak peeks & community invites</span>
+      📬 <span>Get updates, sneak peeks & invites</span>
     </li>
   </ul>
 </section>
@@ -187,19 +187,7 @@ export default function Home() {
             <section className="flex flex-col md:flex-row items-center justify-center pb-2">Get on the Waitlist!</section>
             <section className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 w-full">
               {/* Ensure these flex items don't push each other due to min-width or lack of shrinking */}
-              <div className="flex flex-col items-center text-center flex-shrink-0"> {/* Added flex-shrink-0 */}
-                <Image
-                  src="/gnome-contacts.svg"
-                  alt="Contacts App"
-                  width={56}
-                  height={56}
-                  className="rounded-lg"
-                />
-                <p className="text-xs mt-1 text-muted-foreground">iOS Contacts</p>
-              </div>
-
-              <ArrowRight className="w-5 h-5 text-cyan-400 self-center flex-shrink-0" /> {/* Added flex-shrink-0 */}
-
+              
               <div className="flex flex-col items-center text-center flex-shrink-0"> {/* Added flex-shrink-0 */}
                 <Image
                   src="/Rookery_AppIcon.jpg"
@@ -208,13 +196,13 @@ export default function Home() {
                   height={56}
                   className="object-contain rounded-lg"
                 />
-                <p className="text-xs mt-1 text-muted-foreground">Rookery AI</p>
+                <p className="text-xs mt-1 text-muted-foreground">Rookery</p>
               </div>
             </section>
 
             {/* Privacy Text */}
             <p className="text-xs text-muted-foreground text-center max-w-[90%]">
-              Your privacy is paramount. Rookery processes all data locally on your device using native Swift capabilities. Nothing leaves your phone without your permission.
+              Your privacy is paramount. Rookery processes all data locally on your device using native mobile capabilities. Nothing leaves your phone without your permission.
             </p>
           </div>
 
